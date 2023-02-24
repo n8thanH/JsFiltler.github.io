@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+
+    <style>
+        /*#79ADDC*/
+        /*#07004D*/
+        /*#FFFCF9*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #79ADDC;
+        }
+
+        #theFather {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            font-size: 3vw;
+            padding: 3vw;
+            background-color: #07004D;
+            color: white;
+            width: 100%;
+        }
+
+        #pageContent {
+            padding: 5vw;
+            width: 100%;
+        }
+
+        #filterPanel {
+            padding: 5vw;
+            background-color: #07004D;
+            color: white;
+        }
+
+        #buttonContainer {
+            padding: 5vw;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+        }
+
+        #dataContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5vh;
+        }
+
+        form {
+            font-size: 1.5vw;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="theFather">
+        <header>Filter</header>
+        <div id="pageContent">
+            <div id="filterPanel">
+                <div id="buttonContainer">
+                    <form>
+                        <input type="radio" name="idkbro" id="Freshman">
+                        <label for="Freshman">Freshman</label><br>
+                        <input type="radio" name="idkbro" id="Sophmore">
+                        <label for="Sophmore">Sophmore</label><br>
+                        <input type="radio" name="idkbro" id="Junior">
+                        <label for="Junior">Junior</label><br>
+                        <input type="radio" name="idkbro" id="Senior">
+                        <label for="Senior">Senior</label><br>
+                    </form>
+                </div>
+                <div id="dataContainer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fbutton = document.getElementById('Freshman');
+        const sobutton = document.getElementById('Sophmore');
+        const jbutton = document.getElementById('Junior');
+        const sebutton = document.getElementById('Senior');
+        const dataContainer = document.getElementById('dataContainer');
+
+
+        let students = [];
+        class Student {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+        }
+
+        students.push(
+            new Student('Ethan', 'Freshman'),
+            new Student('Jayden', 'Sophmore'),
+            new Student('Hayden from Middle School', 'Senior'),
+            new Student('Shane', 'Junior'),
+            new Student('Gabby', 'Junior'),
+            new Student('Nathan', 'Senior'),
+            new Student('Randy', 'Sophmore'),
+            new Student('Miggs', 'Freshman')
+
+        );
+
+        function showElements(students){
+            let elements = "";
+            students.forEach(x => {
+                elements += `
+                                <p>${x.name}</p>
+                                <p>${x.year}</p>
+                            `;
+            })
+
+            document.getElementById("dataContainer").innerHTML = elements; 
+        }
+
+
+        fbutton.addEventListener('click', () => {
+            const newarr = students.filter(x => x.year == 'Freshman');
+            showElements(newarr);
+        });
+
+        sobutton.addEventListener('click', () => {
+            const newarr = students.filter(x => x.year == 'Sophmore');
+            showElements(newarr);
+        });
+
+
+        jbutton.addEventListener('click', () => {
+            const newarr = students.filter(x => x.year == 'Junior');
+            showElements(newarr);
+        });
+
+
+        sebutton.addEventListener('click', () => {
+            const newarr = students.filter(x => x.year == 'Senior');
+            showElements(newarr);
+        });
+
+
+        showElements(students);
+    </script>
+</body>
+
+</html>
